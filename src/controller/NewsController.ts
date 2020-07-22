@@ -13,7 +13,13 @@ class NewsController {
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 
-    getById(req, res) { }
+    getById(req, res) {
+        const _id = req.params.id
+
+        NewsService.getById(_id)
+            .then(news => this.sendResponse(res, HttpStatus.OK, news))
+            .catch(error => console.error.bind(console, `Error ${error}`))
+    }
 
     create(req, res) { }
 
