@@ -32,7 +32,7 @@ class NewsController {
         let vm = req.body
 
         NewsService.update(_id, vm)
-            .then(news => Helper.sendResponse(res, HttpStatus.CREATED, ` ${news.title} foi atualizada com sucesso!`))
+            .then(news => Helper.sendResponse(res, HttpStatus.CREATED, "Notícia foi atualizada com sucesso!"))
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 
@@ -40,7 +40,7 @@ class NewsController {
         const _id = req.params.id
 
         NewsService.delete(_id)
-            .then(() => Helper.sendResponse(HttpStatus.OK), `Notícia deletada com sucesso!`)
+            .then(() => Helper.sendResponse(res, HttpStatus.OK, "Notícia deletada com sucesso!"))
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 }

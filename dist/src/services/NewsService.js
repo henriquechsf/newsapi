@@ -17,7 +17,7 @@ class NewsService {
     update(_id, news) {
         return NewsRepository_1.default.findByIdAndUpdate(_id, news);
     }
-    delete(_id, news) {
+    delete(_id) {
         return NewsRepository_1.default.findByIdAndRemove(_id);
     }
 }
