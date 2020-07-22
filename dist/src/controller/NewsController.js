@@ -4,7 +4,7 @@ const HttpStatus = require("http-status");
 const NewsService_1 = require("../services/NewsService");
 class NewsController {
     constructor() {
-        // metodo generico
+        // metodo generico de resposta
         this.sendResponse = (res, statusCode, data) => {
             res.status(statusCode).json({ result: data });
         };
@@ -33,6 +33,11 @@ class NewsController {
             .then(news => this.sendResponse(res, HttpStatus.CREATED, ` ${news.title} foi atualizada com sucesso!`))
             .catch(error => console.error.bind(console, `Error ${error}`));
     }
-    delete(req, res) { }
+    delete(req, res) {
+        const _id = req.params.id;
+        NewsService_1.default.delete(_id)
+            .then(() => this.sendResponse(HttpStatus.OK), "Notícia deletada com sucesso!")
+            .catch(error => console.error.bind(console, `Error ${error}`));
+    }
 }
 exports.default = new NewsController();

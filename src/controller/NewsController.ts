@@ -2,7 +2,7 @@ import * as HttpStatus from 'http-status'
 import NewsService from '../services/NewsService'
 
 class NewsController {
-    // metodo generico
+    // metodo generico de resposta
     sendResponse = (res, statusCode, data) => {
         res.status(statusCode).json({ result: data })
     }
@@ -38,7 +38,13 @@ class NewsController {
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 
-    delete(req, res) { }
+    delete(req, res) {
+        const _id = req.params.id
+
+        NewsService.delete(_id)
+            .then(() => this.sendResponse(HttpStatus.OK), "Notícia deletada com sucesso!")
+            .catch(error => console.error.bind(console, `Error ${error}`))
+    }
 }
 
 export default new NewsController()
