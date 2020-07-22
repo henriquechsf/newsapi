@@ -23,10 +23,16 @@ class NewsController {
     create(req, res) {
         let vm = req.body;
         NewsService_1.default.create(vm)
-            .then(news => this.sendResponse(res, HttpStatus.OK, news))
+            .then(news => this.sendResponse(res, HttpStatus.CREATED, "Notícia cadastrada com sucesso!"))
             .catch(error => console.error.bind(console, `Error ${error}`));
     }
-    update(req, res) { }
+    update(req, res) {
+        const _id = req.params.id;
+        let vm = req.body;
+        NewsService_1.default.update(_id, vm)
+            .then(news => this.sendResponse(res, HttpStatus.CREATED, ` ${news.title} foi atualizada com sucesso!`))
+            .catch(error => console.error.bind(console, `Error ${error}`));
+    }
     delete(req, res) { }
 }
 exports.default = new NewsController();

@@ -29,7 +29,14 @@ class NewsController {
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 
-    update(req, res) { }
+    update(req, res) {
+        const _id = req.params.id
+        let vm = req.body
+
+        NewsService.update(_id, vm)
+            .then(news => this.sendResponse(res, HttpStatus.CREATED, ` ${news.title} foi atualizada com sucesso!`))
+            .catch(error => console.error.bind(console, `Error ${error}`))
+    }
 
     delete(req, res) { }
 }
