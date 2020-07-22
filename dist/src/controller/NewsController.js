@@ -20,7 +20,12 @@ class NewsController {
             .then(news => this.sendResponse(res, HttpStatus.OK, news))
             .catch(error => console.error.bind(console, `Error ${error}`));
     }
-    create(req, res) { }
+    create(req, res) {
+        let vm = req.body;
+        NewsService_1.default.create(vm)
+            .then(news => this.sendResponse(res, HttpStatus.OK, news))
+            .catch(error => console.error.bind(console, `Error ${error}`));
+    }
     update(req, res) { }
     delete(req, res) { }
 }

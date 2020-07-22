@@ -21,7 +21,13 @@ class NewsController {
             .catch(error => console.error.bind(console, `Error ${error}`))
     }
 
-    create(req, res) { }
+    create(req, res) {
+        let vm = req.body
+
+        NewsService.create(vm)
+            .then(news => this.sendResponse(res, HttpStatus.CREATED, "Notícia cadastrada com sucesso!"))
+            .catch(error => console.error.bind(console, `Error ${error}`))
+    }
 
     update(req, res) { }
 
