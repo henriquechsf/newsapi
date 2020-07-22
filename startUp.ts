@@ -6,6 +6,7 @@ import * as express from 'express'
 import * as bodyParser from 'body-parser'
 
 import Database from './src/infra/database'
+import NewsController from './src/controller/NewsController'
 
 class StartUp {
     public app: express.Application
@@ -33,6 +34,13 @@ class StartUp {
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' })
         })
+
+        // new
+        this.app.route("/api/v1/news").get(NewsController.get)
+        this.app.route("/api/v1/news/:id").get(NewsController.getById)
+        this.app.route("/api/v1/news").post(NewsController.create)
+        this.app.route("/api/v1/news/:id").put(NewsController.update)
+        this.app.route("/api/v1/news/:id").delete(NewsController.delete)
     }
 }
 
