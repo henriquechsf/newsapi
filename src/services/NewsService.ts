@@ -21,7 +21,7 @@ class NewsService {
         return NewsRepository.findByIdAndUpdate(_id, news)
     }
 
-    delete(_id, news) {
+    delete(_id) {
         return NewsRepository.findByIdAndRemove(_id)
     }
 }
