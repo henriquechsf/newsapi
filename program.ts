@@ -4,7 +4,7 @@
 
 import StartUp from './startUp'
 
-let port = process.env.PORT || 3000
+let port = process.env.PORT || 3001
 
 StartUp.app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
