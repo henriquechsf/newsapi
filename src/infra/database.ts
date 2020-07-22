@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
 
-class Db {
+class Database {
 
     private DB_URL = 'mongodb://localhost:28017/db_portal'
 
@@ -9,4 +9,4 @@ class Db {
     }
 }
 
-export default Db
+export default Database
