@@ -3,19 +3,28 @@
  */
 
 import * as express from 'express'
+import * as bodyParser from 'body-parser'
 
 import Database from './src/infra/database'
 
 class StartUp {
     public app: express.Application
     private _db: Database
+    private _bodyParser
 
     constructor() {
         this.app = express()
         this._db = new Database()
 
         this._db.createConnection()
+        // !importante - necessario chamar os middlers antes das rotas
+        this.middler()
         this.routes()
+    }
+
+    middler() {
+        this.app.use(bodyParser.json())
+        this.app.use(bodyParser.urlencoded({ extended: false }))
     }
 
     // metodo para as rotas
