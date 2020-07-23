@@ -8,6 +8,7 @@ import * as cors from 'cors'
 
 import Database from './src/infra/database'
 import NewsController from './src/controller/NewsController'
+import Auth from './src/infra/auth'
 
 class StartUp {
     public app: express.Application
@@ -41,10 +42,14 @@ class StartUp {
 
     // metodo para as rotas
     routes() {
+
         // rota default
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' })
         })
+
+        // habilita validação jwt a partir destas rotas
+        this.app.use(Auth.validate)
 
         // new
         this.app.route("/api/v1/news").get(NewsController.get)

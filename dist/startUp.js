@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const database_1 = require("./src/infra/database");
 const NewsController_1 = require("./src/controller/NewsController");
+const auth_1 = require("./src/infra/auth");
 class StartUp {
     constructor() {
         this.app = express();
@@ -36,6 +37,8 @@ class StartUp {
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
         });
+        // habilita validação jwt a partir destas rotas
+        this.app.use(auth_1.default.validate);
         // new
         this.app.route("/api/v1/news").get(NewsController_1.default.get);
         this.app.route("/api/v1/news/:id").get(NewsController_1.default.getById);
