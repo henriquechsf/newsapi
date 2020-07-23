@@ -4,6 +4,7 @@
 
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
 
 import Database from './src/infra/database'
 import NewsController from './src/controller/NewsController'
@@ -23,7 +24,17 @@ class StartUp {
         this.routes()
     }
 
+    enableCors() {
+        const options: cors.CorsOptions = {
+            methods: "GET,OPTIONS,PUT,POST,DELETE",
+            // aceita request de qualquer origem
+            origin: "*"
+        }
+        this.app.use(cors(options))
+    }
+
     middler() {
+        this.enableCors()
         this.app.use(bodyParser.json())
         this.app.use(bodyParser.urlencoded({ extended: false }))
     }
