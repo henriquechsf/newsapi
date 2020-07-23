@@ -1,16 +1,15 @@
 version: "3"
-
 services:
-    api:
-        image: henriquechsf/api-tsnode
-        ports:
-            - "3030:3001"
-        links:
-            - link-db
-    
-    link-db:
-        image: tutum/mongodb
-        ports:
-            - "28017:27017"
-        environment:
-            - AUTH=no
+  api:
+    image: henrique3dmt/api-tsnode
+    ports:
+      - "80:3050"
+    links:
+      - link-db
+  link-db:
+    image: tutum/mongodb
+    ports:
+      #- "27017:27017"
+      - "28017:28017"
+    environment:
+      - AUTH=no
