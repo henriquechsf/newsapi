@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken'
-import configs, * as Configs from './configs'
+import configs from './configs'
 
 class Auth {
 
@@ -26,3 +26,5 @@ class Auth {
         }
     }
 }
+
+export default new Auth()

@@ -26,3 +26,4 @@ class Auth {
         }
     }
 }
+exports.default = new Auth();
