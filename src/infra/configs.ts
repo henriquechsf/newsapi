@@ -1,5 +1,5 @@
 class Configs {
-    secret = "qwertasd"
+    secret = "batman"
 }
 
 export default new Configs

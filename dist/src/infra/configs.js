@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Configs {
     constructor() {
-        this.secret = "qwertasd";
+        this.secret = "batman";
     }
 }
 exports.default = new Configs;
