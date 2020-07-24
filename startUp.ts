@@ -9,6 +9,7 @@ import * as cors from 'cors'
 import Database from './src/infra/database'
 import NewsController from './src/controller/NewsController'
 import Auth from './src/infra/auth'
+import uploads from './src/infra/uploads'
 
 class StartUp {
     public app: express.Application
@@ -46,6 +47,15 @@ class StartUp {
         // rota default
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' })
+        })
+
+        // upload de arquivo
+        this.app.route("/uploads").post(uploads.single("file"), (req, res) => {
+            try {
+                res.send("Arquivo enviado com sucesso!")
+            } catch (error) {
+                console.error(error)
+            }
         })
 
         // habilita validação jwt a partir destas rotas

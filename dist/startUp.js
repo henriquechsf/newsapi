@@ -9,6 +9,7 @@ const cors = require("cors");
 const database_1 = require("./src/infra/database");
 const NewsController_1 = require("./src/controller/NewsController");
 const auth_1 = require("./src/infra/auth");
+const uploads_1 = require("./src/infra/uploads");
 class StartUp {
     constructor() {
         this.app = express();
@@ -36,6 +37,15 @@ class StartUp {
         // rota default
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
+        });
+        // upload de arquivo
+        this.app.route("/uploads").post(uploads_1.default.single("file"), (req, res) => {
+            try {
+                res.send("Arquivo enviado com sucesso!");
+            }
+            catch (error) {
+                console.error(error);
+            }
         });
         // habilita validação jwt a partir destas rotas
         this.app.use(auth_1.default.validate);
