@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const compression = require("compression");
 const database_1 = require("./src/infra/database");
 const auth_1 = require("./src/infra/auth");
 const uploads_1 = require("./src/infra/uploads");
@@ -31,6 +32,7 @@ class StartUp {
         this.enableCors();
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(compression());
     }
     // metodo para as rotas
     routes() {
@@ -49,7 +51,7 @@ class StartUp {
         });
         // habilita validação jwt a partir destas rotas
         this.app.use(auth_1.default.validate);
-        // new
+        // new routes
         this.app.use('/', newsRouter_1.default);
     }
 }

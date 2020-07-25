@@ -5,6 +5,7 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
+import * as compression from 'compression'
 
 import Database from './src/infra/database'
 
@@ -40,6 +41,7 @@ class StartUp {
         this.enableCors()
         this.app.use(bodyParser.json())
         this.app.use(bodyParser.urlencoded({ extended: false }))
+        this.app.use(compression())
     }
 
     // metodo para as rotas
@@ -62,7 +64,7 @@ class StartUp {
         // habilita validação jwt a partir destas rotas
         this.app.use(Auth.validate)
 
-        // new
+        // new routes
         this.app.use('/', newsRouter)
     }
 }
