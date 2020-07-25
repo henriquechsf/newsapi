@@ -2,9 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpStatus = require("http-status");
 const NewsService_1 = require("../services/NewsService");
+const redis = require("redis");
 const helper_1 = require("../infra/helper");
 class NewsController {
     get(req, res) {
+        // redis
+        let client = redis.createClient();
+        client.get('news', (err, reply) => {
+            if (reply) {
+                console.log('redis');
+                helper_1.default.sendResponse(res, HttpStatus.OK, JSON.parse(reply));
+            }
+            else {
+                NewsService_1.default.get()
+                    .then(news => {
+                    console.log('db');
+                    client.set('news', JSON.stringify(news));
+                    client.expire('news', 20);
+                    helper_1.default.sendResponse(res, HttpStatus.OK, news);
+                })
+                    .catch(error => console.error.bind(console, `Error: ${error}`));
+            }
+        });
+        // mongo
         NewsService_1.default.get()
             .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
             .catch(error => console.error.bind(console, `Error ${error}`));
