@@ -9,7 +9,7 @@ class NewsController {
     get(req, res) {
 
         // redis
-        let client = redis.createClient()
+        let client = redis.createClient(6379, 'redis')
 
         client.get('news', (err, reply) => {
             if (reply) {
