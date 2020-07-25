@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc -w",
+    "compile": "tsc -w -diagnostics",
     "start": "node program.js",
     "dev": "nodemon ./dist/program.js"
   },
