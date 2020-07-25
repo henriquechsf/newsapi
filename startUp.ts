@@ -7,9 +7,10 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 
 import Database from './src/infra/database'
-import NewsController from './src/controller/NewsController'
+
 import Auth from './src/infra/auth'
 import uploads from './src/infra/uploads'
+import newsRouter from './src/router/newsRouter'
 
 class StartUp {
     public app: express.Application
@@ -62,11 +63,7 @@ class StartUp {
         this.app.use(Auth.validate)
 
         // new
-        this.app.route("/api/v1/news").get(NewsController.get)
-        this.app.route("/api/v1/news/:id").get(NewsController.getById)
-        this.app.route("/api/v1/news").post(NewsController.create)
-        this.app.route("/api/v1/news/:id").put(NewsController.update)
-        this.app.route("/api/v1/news/:id").delete(NewsController.delete)
+        this.app.use('/', newsRouter)
     }
 }
 
