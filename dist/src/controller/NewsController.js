@@ -13,6 +13,7 @@ const HttpStatus = require("http-status");
 const NewsService_1 = require("../services/NewsService");
 const redis = require("redis");
 const helper_1 = require("../infra/helper");
+const exportFiles_1 = require("../infra/exportFiles");
 class NewsController {
     get(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -47,11 +48,13 @@ class NewsController {
                     Helper.sendResponse(res, HttpStatus.OK, news)
                 })
                 .catch(error => console.error.bind(console, `Error: ${error}`))
-            */
+            
+    
             // mongo
-            NewsService_1.default.get()
-                .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
-                .catch(error => console.error.bind(console, `Error ${error}`));
+            NewsService.get()
+                .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
+                .catch(error => console.error.bind(console, `Error ${error}`))
+            */
         });
     }
     getById(req, res) {
@@ -71,6 +74,18 @@ class NewsController {
                    .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
                    .catch(error => console.error.bind(console, `Error ${error}`))
                */
+        });
+    }
+    exportToCsv(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let result = yield NewsService_1.default.get();
+                let fileName = exportFiles_1.default.tocsv(result);
+                helper_1.default.sendResponse(res, HttpStatus.OK, req.get('host') + "/exports/" + fileName);
+            }
+            catch (error) {
+                console.error(`Error: ${error}`);
+            }
         });
     }
     create(req, res) {

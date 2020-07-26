@@ -3,6 +3,7 @@ import NewsService from '../services/NewsService'
 import * as redis from 'redis'
 
 import Helper from '../infra/helper'
+import ExportFiles from '../infra/exportFiles'
 import { response } from 'express'
 
 class NewsController {
@@ -37,12 +38,13 @@ class NewsController {
                 Helper.sendResponse(res, HttpStatus.OK, news)
             })
             .catch(error => console.error.bind(console, `Error: ${error}`))
-        */
+        
 
         // mongo
         NewsService.get()
             .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
             .catch(error => console.error.bind(console, `Error ${error}`))
+        */
     }
 
     async getById(req, res) {
@@ -62,6 +64,16 @@ class NewsController {
                .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
                .catch(error => console.error.bind(console, `Error ${error}`))
            */
+    }
+
+    async exportToCsv(req, res) {
+        try {
+            let result = await NewsService.get()
+            let fileName = ExportFiles.tocsv(result)
+            Helper.sendResponse(res, HttpStatus.OK, req.get('host') + "/exports/" + fileName)
+        } catch (error) {
+            console.error(`Error: ${error}`)
+        }
     }
 
     async create(req, res) {

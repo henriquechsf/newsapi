@@ -5,6 +5,7 @@ const NewsController_1 = require("../../src/controller/NewsController");
 const newsRouter = express.Router();
 newsRouter.route("/api/v1/news").get(NewsController_1.default.get);
 newsRouter.route("/api/v1/news/:id").get(NewsController_1.default.getById);
+newsRouter.route("/api/v1/news/export/tocsv").get(NewsController_1.default.exportToCsv);
 newsRouter.route("/api/v1/news").post(NewsController_1.default.create);
 newsRouter.route("/api/v1/news/:id").put(NewsController_1.default.update);
 newsRouter.route("/api/v1/news/:id").delete(NewsController_1.default.delete);

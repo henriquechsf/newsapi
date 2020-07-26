@@ -546,26 +546,6 @@
         "signature": "0d8e56ff05e826421d4baae2fd362c2bfa13a1ea57aa0b6759b7de54bd0639bc",
         "affectsGlobalScope": false
       },
-      "../src/controller/NewsController.ts": {
-        "version": "9116a1639c531e5b2efae461184c339d9c355405f440f7ba272987c27cb5809a",
-        "signature": "f2b7dab20fc5bd4bfb246835430210d24c3a4053ec04ff3971646d0dc18f73ec",
-        "affectsGlobalScope": false
-      },
-      "../src/router/newsRouter.ts": {
-        "version": "347b96f82e195b1f43e54c5a73fde8051635cb035ff8ece2b17d4f1419a924ae",
-        "signature": "ae6c9ab1302c43ac5851b1bde6216ef0e3e5e6f7754420aedc8344d142456968",
-        "affectsGlobalScope": false
-      },
-      "../startUp.ts": {
-        "version": "b488b619228531fef620f0919d8b7d0ac0c1fa7569b0c97235d18c911582a730",
-        "signature": "4b7fe4da7ce10fcdd84c373a94bc7d40c8ab7645217870524d95b0eeff1fc15c",
-        "affectsGlobalScope": false
-      },
-      "../program.ts": {
-        "version": "04444df62e36f8595d9fc1242fbc629296b9e067a924ecd0855cd6d2965ad8d4",
-        "signature": "9ad7b29112189f8ed8c9ad743641a301a843f8cd6567bb0ae740a154e12414da",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/json2csv/transforms/base.d.ts": {
         "version": "1f8d0a5850680d5109e64a5f85d980895f8975f0e25872c32a7639ef8a5a0867",
         "signature": "1f8d0a5850680d5109e64a5f85d980895f8975f0e25872c32a7639ef8a5a0867",
@@ -622,8 +602,28 @@
         "affectsGlobalScope": false
       },
       "../src/infra/exportFiles.ts": {
-        "version": "62d2367834aa4afce3ebc39c293e7868c59cf31a14c922dd81827c4114d43d33",
+        "version": "02ca583f42a06e56e14d9cd9b8a1e2525cb98ee5d5655d51e6d88505693e8e23",
         "signature": "6ac1ca1e54663371c66d5e89d5354d060cd9c9fa70e5fc784446bff2a67043d9",
+        "affectsGlobalScope": false
+      },
+      "../src/controller/NewsController.ts": {
+        "version": "ac069c2985205e891b4ceb5ab522a471a1d5f8804e746ec7306d8c73fb14234f",
+        "signature": "7bc0b5eed008241fe1cb690d309ad8328d0c47ce62d59b732fa6dcd356ca3afa",
+        "affectsGlobalScope": false
+      },
+      "../src/router/newsRouter.ts": {
+        "version": "348820076f7c0aca922083e37d188ab94c104a9e5afde0fbcb69c7de2b028b81",
+        "signature": "ae6c9ab1302c43ac5851b1bde6216ef0e3e5e6f7754420aedc8344d142456968",
+        "affectsGlobalScope": false
+      },
+      "../startUp.ts": {
+        "version": "b488b619228531fef620f0919d8b7d0ac0c1fa7569b0c97235d18c911582a730",
+        "signature": "4b7fe4da7ce10fcdd84c373a94bc7d40c8ab7645217870524d95b0eeff1fc15c",
+        "affectsGlobalScope": false
+      },
+      "../program.ts": {
+        "version": "04444df62e36f8595d9fc1242fbc629296b9e067a924ecd0855cd6d2965ad8d4",
+        "signature": "9ad7b29112189f8ed8c9ad743641a301a843f8cd6567bb0ae740a154e12414da",
         "affectsGlobalScope": false
       }
     },
@@ -1707,6 +1707,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/redis/ts3.1/index.d.ts",
         "../node_modules/http-status/lib/index.d.ts",
+        "../src/infra/exportFiles.ts",
         "../src/infra/helper.ts",
         "../src/services/NewsService.ts"
       ],
@@ -2999,40 +3000,7 @@
       "../src/infra/auth.ts",
       "../src/infra/configs.ts",
       "../src/infra/database.ts",
-      [
-        "../src/infra/exportFiles.ts",
-        [
-          {
-            "file": "../src/infra/exportFiles.ts",
-            "start": 504,
-            "length": 3,
-            "code": 2345,
-            "category": 1,
-            "messageText": {
-              "messageText": "Argument of type 'Promise<string>' is not assignable to parameter of type 'string | Uint8Array | Uint8ClampedArray | Uint16Array | Uint32Array | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array | DataView'.",
-              "category": 1,
-              "code": 2345,
-              "next": [
-                {
-                  "messageText": "Type 'Promise<string>' is missing the following properties from type 'DataView': buffer, byteLength, byteOffset, getFloat32, and 19 more.",
-                  "category": 1,
-                  "code": 2740
-                }
-              ]
-            },
-            "relatedInformation": [
-              {
-                "file": "../src/infra/exportFiles.ts",
-                "start": 504,
-                "length": 3,
-                "messageText": "Did you forget to use 'await'?",
-                "category": 1,
-                "code": 2773
-              }
-            ]
-          }
-        ]
-      ],
+      "../src/infra/exportFiles.ts",
       "../src/infra/helper.ts",
       "../src/infra/uploads.ts",
       "../src/models/NewsSchema.ts",
