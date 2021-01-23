@@ -3,9 +3,7 @@
 
 ## Sobre <a name = "about"></a>
 
-API REST de notícias, deploy no Azure
-
-https://tsnodeapi.azurewebsites.net/
+API REST de notícias
 
 ### Recursos
 
